@@ -6,8 +6,8 @@
         <el-input v-model.trim="controls.login" />
       </el-form-item>
       <div class="mb">
-        <el-form-item label="Пароль:" prop="password" type="password">
-          <el-input v-model.trim="controls.password" />
+        <el-form-item label="Пароль:" prop="password">
+          <el-input v-model.trim="controls.password" type="password" />
         </el-form-item>
       </div>
       <el-form-item>
@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$refs.form.validate(valid => {
+      this.$refs.form.validate(async valid => {
         if (valid) {
           this.loading = true;
           try {
@@ -59,7 +59,10 @@ export default {
               login: this.controls.login,
               password: this.controls.password
             };
+            await this.$store.dispatch("auth/login", formData);
+            this.$router.push("/admin");
           } catch (e) {
+            console.log(e);
             this.loading = false;
           }
         }
