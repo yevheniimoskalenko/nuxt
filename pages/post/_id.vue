@@ -29,12 +29,23 @@
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, ratione sed vitae error illo minima ipsa similique quis exercitationem qui.</p>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, ratione sed vitae error illo minima ipsa similique quis exercitationem qui.</p>
     </main>
+    <footer>
+      <!-- form -->
+      <div class="comments" v-if="false">
+        <app-comment v-for="comment in 5" :key="comment" :comment="comment" />
+      </div>
+      <div class="text-center" v-else>Комментариев нет!</div>
+    </footer>
   </article>
 </template>
 <script>
+import AppComment from "@/components/main/comment";
 export default {
   validate({ params }) {
     return Boolean(params.id);
+  },
+  components: {
+    AppComment
   }
 };
 </script>
