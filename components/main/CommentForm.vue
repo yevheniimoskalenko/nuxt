@@ -17,6 +17,7 @@
 export default {
   data() {
     return {
+      loading: false,
       controls: {
         name: "",
         text: ""
@@ -44,6 +45,17 @@ export default {
       this.$refs.form.validate(valid => {
         if (valid) {
           this.loading = true;
+          const fromDate = {
+            name: this.controls.name,
+            text: this.controls.text,
+            postId: ""
+          };
+          try {
+            this.$message.success("Комментарий добавлен");
+            this.$emit("create");
+          } catch (e) {
+            this.loading = false;
+          }
         }
       });
     }

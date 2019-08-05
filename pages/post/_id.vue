@@ -4,7 +4,7 @@
       <div class="post-title">
         <h1>post title</h1>
         <nuxt-link to="/">
-          <i class="el-icon-back"></i>
+          <i class="el-icon-arrow-left"></i>
         </nuxt-link>
       </div>
       <div class="post-info">
@@ -31,8 +31,8 @@
     </main>
     <footer>
       <!-- form -->
-      <app-comment-form />
-      <div class="comments" v-if="false">
+      <app-comment-form @create="createCommentHendler" v-if="canAddComment" />
+      <div class="comments" v-if="true">
         <app-comment v-for="comment in 5" :key="comment" :comment="comment" />
       </div>
       <div class="text-center" v-else>Комментариев нет!</div>
@@ -46,9 +46,19 @@ export default {
   validate({ params }) {
     return Boolean(params.id);
   },
+  data() {
+    return {
+      canAddComment: true
+    };
+  },
   components: {
     AppComment,
     AppCommentForm
+  },
+  methods: {
+    createCommentHendler() {
+      this.canAddComment = false;
+    }
   }
 };
 </script>

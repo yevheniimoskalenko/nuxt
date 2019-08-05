@@ -29,3 +29,21 @@ html {
 .text-center {
   text-align: center;
 }
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity .5s;
+}
+
+.page-enter,
+.page-leave {
+  opacity: 0;
+}
+
+.mb {
+  margin-bottom: 1rem;
+}
+
+.mb2 {
+  margin-bottom: 1rem;
+}
